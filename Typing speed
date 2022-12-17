@@ -1,0 +1,58 @@
+from time import time #to record time
+
+#Calculate accuracy now
+def tperror(prompt):
+    global inwords
+    words = prompt.split()
+    errors = 0
+    for i in range(len(inwords)):
+        if i in (0,len(inwords)-1):
+            if inwords[i] == words[i]:
+                continue
+            else:
+                errors = errors +1
+        else:
+            if inwords[i] == words[i]:
+                if (inwords[i+1] == words[i+1]) & (inwords[i-1] == words[i-1]):
+                    continue
+                else:
+                    errors +=1
+            else:
+                errors+=1
+    return errors
+
+#now we will calculate speed 
+def speed(inprompt, stime, etime):
+    global time
+    global inwords
+    inwords = inprompt.split()
+    twords = len(inwords)
+    speed = twords / time
+
+    return speed
+
+#Now calculate time elapsed 
+
+def elapsedtime(stime, etime):
+    time = etime - stime
+    return time 
+
+if __name__ == '__main__':
+    prompt = "Python is an interprated, high level, general purpose, programming language. Created by Van Rossum and released in 1991, python is often called as batteries included language due to comprehensivve standard libraries " 
+    print ("Type this -  ", prompt, " " )
+    input(" Press enter when you are ready ")
+
+    stime = time()
+    inprompt = input()
+    etime = time()
+    
+
+    time = round(elapsedtime(stime,etime),2)
+    speed = speed(inprompt, stime, etime)
+    errors = tperror(prompt)
+    print("#################")
+    print("Total time elapsed ", time, " seconds. ")
+    print("Your avg typing speed was ", speed, " words per minute")
+    print (" with the total of ", errors, " errors")
+    print("#################")
+
