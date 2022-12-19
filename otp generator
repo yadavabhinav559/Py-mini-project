@@ -1,0 +1,27 @@
+import math
+import os
+import random
+import smtplib
+
+#Now generate random no and store it in variable
+
+digits = "0123456789"
+OTP = ""
+for i in range(6):
+    OTP+=digits[math.floor(random.random()*10)]
+
+otp = OTP + " is your Otp"
+msg = otp
+
+#now we need to login gmail and send the otps 
+
+s = smtplib.SMTP('smtp.gmail.com', 587)
+s.starttls()
+s.login("yourmail@gmail.com", "code")
+emailid = input("Enter your email: ")
+s.sendmail('&&&&&&&&&&&',emailid,msg)
+a = input("Enter Your OTP >>: ")
+if a == OTP:
+    print("Verified")
+else:
+    print("Please Check your OTP again")
