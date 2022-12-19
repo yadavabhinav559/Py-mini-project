@@ -1,0 +1,21 @@
+import wikipedia as wiki 
+#scraping info based on python 
+print(wiki.search("Python"))
+
+#Now seeing will the search engine suggest python if we write some alphabets only
+print("Suggestion")
+print(wiki.suggest("Py"))
+
+#Let's get a summary 
+print("Summary - ")
+print(wiki.summary("Python"))
+
+#we can also change language using wiki.set_lang("en/fr/language")
+
+p=wiki.page("Python")
+
+print("Title - ")
+print(p.title)#title f article
+
+print("Url - ")
+print(p.url)#url of article
